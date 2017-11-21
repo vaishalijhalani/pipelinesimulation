@@ -1,12 +1,10 @@
 class Decode:
 
-   def fetchedinst(self,inst): #fetch instrctions form a file
-      opcode, operands = inst.split(" ")
+   def __init__(self,fetched): #fetch instrctions form a file
 
-      if opcode == "lw" or opcode == "sw":
-      	operand1, operand2 = operands.split(" ")
-
-      else:
-      	operand1, operand2, operand3 = operands.split(" ")
-
-      
+   	  self.fetched = fetched
+   	  print (self.fetched)
+   	  #opcode, operands = inst.split(" ")
+   	 
+   	  #if opcode == "lw" or opcode == "sw":
+   	  #	operand1, operand2 = operands.split(" ")
