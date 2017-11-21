@@ -4,6 +4,6 @@ class Fetch:
       self.file = open(filename,"r")
       #self.object1 = object1
 
-   def next(self): 
-      print self.file.readline() 
+   def next(self):
+      return self.file.readline() 
 

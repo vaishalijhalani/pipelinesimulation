@@ -3,8 +3,10 @@ class Decode:
    def __init__(self,fetched): #fetch instrctions form a file
 
    	  self.fetched = fetched
-   	  print (self.fetched)
-   	  #opcode, operands = inst.split(" ")
-   	 
-   	  #if opcode == "lw" or opcode == "sw":
-   	  #	operand1, operand2 = operands.split(" ")
+   	  inst = self.fetched.next()
+   	  inst = inst[:-1]
+   	  list = inst.split(" ")
+   	  dict = {'opcode':list[0], 'operand1':list[1], 'operand2':list[2]}
+   	  if len(list) == 4:
+   	  	dict['operand3'] = list[3]
+   	  print dict
