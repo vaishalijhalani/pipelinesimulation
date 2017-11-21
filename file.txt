@@ -1,0 +1,9 @@
+lw $t0 10($t1)
+sw $t3 20($t4)
+add $t5 $t6 $t7
+sub $t8 $t9 $t10
+sub $s2 $t11 $t12
+add $s4 $s2 $t13
+or $s6 $t12 $s2
+and $s7 $t15 $s2
+sw $t16 10($s2)
