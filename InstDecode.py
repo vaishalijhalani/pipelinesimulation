@@ -1,26 +1,42 @@
+import copy
+
+
 class Decode:
+    inst_count = 0
 
-    def __init__(self, fetched, counter):  # fetch instrctions form a file
-        self.input = fetched
-        self.output = []
-        self.counter = counter
 
-    def next(self):
-        inst = self.input.pop()
-        print self.counter,'in decode'
-        inst = inst[:-1]
-        aList = inst.split(" ")
-        aDict = {'opcode': aList[0], 'DestReg': aList[
-            1], 'SourceReg': aList[2:]}
-        if aDict['opcode'] == 'add':
-            aDict['opcode'] = 1
-        if aDict['opcode'] == 'or':
-            aDict['opcode'] = 2
-        if aDict['opcode'] == 'sub':
-            aDict['opcode'] = 3
-        if aDict['opcode'] == 'and':
-            aDict['opcode'] = 4
-        self.output.append(aDict)
-        
-        self.counter += 1
-        # print self.output
+def __init__(self, Input):
+    self.input = Input
+    self.output = []
+    #self.reg_dict = registers.reg_dict
+    self.prev_buf = [None, None, None]
+
+
+def next(self):
+    inst = self.input.pop()
+    inst = inst[:-1]
+    inst_list = inst.split(" ")
+
+    inst_dict = {'opcode': inst_list[0]}
+    if inst_dict['opcode'] == 'sw':
+        inst_dict['src_reg'] = inst_list[1:]
+    else:
+        inst_dict['dest_reg'] = inst_list[1]
+        inst_dict['src_reg'] = inst_list[2:]
+
+    self.output.append(inst_dict)
+
+    if self.prev_buf[1] is not None:  # copy value from 1 to 2
+        self.prev_buf[2] = copy.deepcopy(self.prev_buf[1])
+    else:
+        self.prev_buf[2] = None
+
+    if self.prev_buf[0] is not None:  # copy value from 0 to 1
+        self.prev_buf[1] = copy.deepcopy(self.prev_buf[0])
+    else:
+        self.prev_buf[1] = None
+
+    if inst_dict.opcode != 'sw':  # copy value to 0
+        self.prev_buf[0] = copy.deepcopy(inst_dict)
+    else:
+        self.prev_buf[0] = None

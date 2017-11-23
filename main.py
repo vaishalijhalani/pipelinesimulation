@@ -1,23 +1,26 @@
 from InstFetch import Fetch
 from InstDecode import Decode
 from InstExec import Execute
-from InstMem import Memory 
+from InstMem import Memory
 from InstWB import Writeback
+from memReg import RegClass
 
-fetch = Fetch('file2.txt')
-decode = Decode(fetch.output, fetch.counter)
-exe = Execute(decode.output, decode.counter)
-mem = Memory(exe.counter)
-wb = Writeback(mem.counter)
+registers = RegClass(64)
 
-for i in range(0, 2):
-    fetch.counter = i
-    fetch.next()
-    decode.next()
-    exe.next()
-    mem.next()
-    wb.next()
-    print 'first instruction completes in ',wb.counter, ' cycles'
+fetch = Fetch('file3.txt')
+decode = Decode(fetch.output)
+exe = Execute(decode.output)
+mem = Memory(exe.output)
+wb = Writeback(mem.output)
 
-# print decode.output
-# print decode.counter
+for i in range(0, 10):
+
+	fetch.next()
+	decode.next()
+	exe.next()
+	mem.next()
+	wb.next()
+#print('first instruction completes in ', wb.counter, ' cycles')
+
+# print(decode.output)
+# print(decode.counter)
