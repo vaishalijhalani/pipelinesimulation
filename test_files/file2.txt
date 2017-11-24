@@ -1,0 +1,4 @@
+add $t5 $t0 $t7
+sub $t8 $t5 $t10
+sub $s2 $t5 $t12
+add $s4 $t8 $t13

@@ -4,6 +4,8 @@ class Execute:
         self.input = Input
         self.output = []
 
-    def next(self):
-        pass
+    def next(self, counter):
+    	if len(self.output) == 0 and len(self.input)!=0:
+    		self.output.append(self.input.pop())
+        
                         
